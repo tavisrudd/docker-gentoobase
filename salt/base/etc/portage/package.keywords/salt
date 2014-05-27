@@ -1,0 +1,4 @@
+>=app-admin/salt-0.17.4-r1 ~amd64
+>=dev-python/msgpack-0.4.0 ~amd64
+>=dev-python/pycryptopp-0.6.0 ~amd64
+>=dev-python/pyyaml-3.10-r1 ~amd64
