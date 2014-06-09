@@ -7,7 +7,7 @@ app-admin/syslog-ng:
   pkg.installed:
     - refesh: False
 
-syslog-ng:
-  service.running:
-    - enable: True
-    - provider: service
+#syslog-ng:
+#  service.running:
+#    - enable: True
+#    - provider: service

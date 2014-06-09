@@ -1,11 +1,3 @@
-include:
-  - .python-multiproc-bug
-
-dev-lang/python:
-  portage_config.flags:
-    - use:
-      - sqlite
-
 app-arch/pixz:
   portage_config.flags:
     - accept_keywords: 
@@ -20,10 +12,6 @@ core-utils:
       - sys-process/lsof
       - dev-python/psutil
       - dev-util/strace
-
-      # python 
-      - dev-python/pip
-      - dev-python/ipython
 
       # gentoo-utils:
       - app-admin/localepurge
@@ -41,17 +29,16 @@ core-utils:
       - net-misc/dhcpcd
       - net-misc/telnet-bsd
       - net-analyzer/netcat
-      - net-misc/openvpn
-      - net-dns/dnsmasq
+      #- net-misc/openvpn
+      #- net-dns/dnsmasq
       - net-analyzer/iftop
       - net-misc/curl
       - sys-apps/pv
       - www-servers/nginx
-      - www-client/lynx
 
       # dev-utils:
-      - dev-util/cmake
-      - dev-lang/go
+      #- dev-util/cmake
+      #- dev-lang/go
 
       # tty-utils:
       - app-misc/screen

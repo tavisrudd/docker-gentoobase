@@ -2,7 +2,10 @@
   file.sed:
     - before: '^#rc_sys=""'
     - after: 'rc_sys="lxc"'
+
+provide net in /etc/rc.conf:
   file.sed:
+    - name: /etc/rc.conf
     - before: '^#rc_provide="!net"'
     - after: 'rc_provide="net"'
 
@@ -10,10 +13,13 @@
   file.sed:
     - before: '\(^c[1-6]\)'
     - after: '#\1'
+
+clean container shutdown on SIGPWR:
   file.append:
-    text: |
-    # clean container shutdown on SIGPWR
-    pf:12345:powerwait:/sbin/halt
+    - name: /etc/inittab
+    - text: |
+        # clean container shutdown on SIGPWR
+        pf:12345:powerwait:/sbin/halt
 
 /etc/issue:
   file.sed:
@@ -28,5 +34,5 @@
 
 # fix https://github.com/dotcloud/docker/issues/2356
 /dev/fd:
-  file.symlink
+  file.symlink:
     - target: /proc/self/fd

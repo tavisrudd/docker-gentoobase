@@ -1,8 +1,11 @@
 include:
-  - .portage
-  - .salt-installed
-  - .sshd
+  - .portage-config
   - .locale
   - .time
+  - .python
+  - .salt-installed
+  - .docker-compat
   - .core-utils
   - .logging
+  - .sshd
+  - .rm-crap

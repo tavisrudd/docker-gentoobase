@@ -1,7 +1,8 @@
 FROM tavisrudd/stage3
 MAINTAINER tavisrudd
-ADD salt/etc/portage/package.keywords/ /etc/portage/package.keywords/
+ADD salt/base/etc/portage/package.keywords/ /etc/portage/package.keywords/
 ADD salt/ /srv/salt
-RUN emerge -u --usepkg --quiet --quiet-build salt && \
-    salt-call --retcode-passthrough --local state.sls base.salt-patches && \
-    salt-call --retcode-passthrough --local state.highstate
+ADD docker-bootstrap.sh /root/
+#VOLUME ["/usr/portage"]
+# ADD http://gentoo.arcticnetwork.ca/snapshots/portage-latest.tar.xz /usr/portage
+RUN /root/docker-bootstrap.sh

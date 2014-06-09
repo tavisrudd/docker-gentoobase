@@ -12,3 +12,6 @@
 
 /usr/share/doc/*:
   file.absent
+
+/usr/portage/distfiles/*:
+  file.absent
