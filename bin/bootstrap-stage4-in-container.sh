@@ -23,6 +23,7 @@ configure_portage() {
 configure_portage &&
 get_portage_snapshot && 
 ln -sf /proc/self/fd /dev/ &&
+emerge -vuD system world &&
 emerge -u --usepkg --buildpkg --quiet --quiet-build salt &&
 salt_local state.sls base.salt-patches &&
 salt_local state.highstate
