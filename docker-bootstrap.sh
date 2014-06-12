@@ -10,6 +10,7 @@ salt_local() {
 get_portage && 
 ln -sf /proc/self/fd /dev/ &&
 mkdir -p /etc/portage/package.keywords/ &&
+cp /srv/salt/base/etc/portage/make.conf /etc/portage/make.conf &&
 cat > /etc/portage/package.keywords/salt <<EOF
 >=app-admin/salt-0.17.4-r1 ~amd64
 >=dev-python/msgpack-0.4.0 ~amd64
