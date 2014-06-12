@@ -10,7 +10,7 @@ export TARGET_ROOT=rootfs
 
 prep_rootfs_from_stage3() {
     mkdir $TARGET_ROOT
-    tar -C $TARGET_ROOT -xjpf $STAGE3_BALL
+    tar -C $TARGET_ROOT -xjpf "$STAGE3_BALL"
     mkdir -p $TARGET_ROOT/dev/pts
     mkdir -p $TARGET_ROOT/usr/portage
     mkdir -p $TARGET_ROOT/var/tmp/packages
@@ -188,7 +188,7 @@ mount_host_sys_dirs() {
 #####
 
 do_emerge() {
-    chroot_run emerge -u --quiet --quiet-build --usepkg --buildpkg $@
+    chroot_run emerge -u --quiet --quiet-build --usepkg --buildpkg "$@"
     #--binpkg-respect-use=y
 }
 
@@ -261,7 +261,7 @@ EOF
     )
     mount_host_sys_dirs
 
-    echo `date` base done. Now Java
+    echo "$(date) base done. Now Java"
     do_emerge dev-java/oracle-jdk-bin
     chroot_run java-config --set-system-vm oracle-jdk-bin-1.7
     do_emerge --unmerge dev-java/icedtea-bin
