@@ -12,7 +12,7 @@ main() {
                 "$BASEIMAGE" /mnt/bin/bootstrap-stage4-in-container.sh &&
     docker commit -m='automated build' "$CONTAINER_NAME" "tavisrudd/$IMAGE_NAME" &&
     docker export "$CONTAINER_NAME" > "build/$CONTAINER_NAME.tar" &&
-    pixz "$CONTAINER_NAME.tar" &&
+    pixz "build/$CONTAINER_NAME.tar" &&
     docker rm "$CONTAINER_NAME"
 }
 
