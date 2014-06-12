@@ -10,10 +10,10 @@ main() {
                 --volumes-from "$PORTAGE_VOLS_CONTAINER" \
                 -v "$CWD":/mnt -v "$CWD/salt/":/srv/salt \
                 "$BASEIMAGE" /mnt/bin/bootstrap-stage4-in-container.sh &&
-    docker commit -m='automated build' "$CONTAINER_NAME" "tavisrudd/$IMAGE_NAME" &&
     docker export "$CONTAINER_NAME" > "build/$CONTAINER_NAME.tar" &&
-    pixz "build/$CONTAINER_NAME.tar" &&
-    docker rm "$CONTAINER_NAME"
+    docker import - "tavisrudd/$IMAGE_NAME" < "build/$CONTAINER_NAME.tar" &&
+    docker rm "$CONTAINER_NAME" &&
+    pixz "build/$CONTAINER_NAME.tar"
 }
 
 main
