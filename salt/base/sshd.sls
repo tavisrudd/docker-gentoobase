@@ -3,4 +3,4 @@
 #    - enable: True
 #    - provider: service
 #
-# what do about keeping the host key out of the base image?
+# what to do about keeping the host key out of the base image?
