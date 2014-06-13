@@ -39,6 +39,7 @@ core-utils:
       # dev-utils:
       #- dev-util/cmake
       #- dev-lang/go
+      - app-editors/mg
 
       # tty-utils:
       - app-misc/screen
