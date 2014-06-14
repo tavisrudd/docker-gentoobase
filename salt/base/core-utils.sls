@@ -12,6 +12,7 @@ core-utils:
       - sys-process/lsof
       - dev-python/psutil
       - dev-util/strace
+      - sys-apps/pv
 
       # gentoo-utils:
       - app-admin/localepurge
@@ -21,6 +22,10 @@ core-utils:
       - app-portage/flaggie
       - app-shells/gentoo-bashcomp
 
+      # dev-utils:
+      - sys-devel/make
+      - app-editors/mg
+
       # network-utils:
       - sys-apps/iproute2
       - sys-apps/ethtool
@@ -29,17 +34,11 @@ core-utils:
       - net-misc/dhcpcd
       - net-misc/telnet-bsd
       - net-analyzer/netcat
-      #- net-misc/openvpn
-      #- net-dns/dnsmasq
+      - net-libs/libpcap
+      - net-analyzer/tcpdump
       - net-analyzer/iftop
       - net-misc/curl
-      - sys-apps/pv
       - www-servers/nginx
-
-      # dev-utils:
-      #- dev-util/cmake
-      #- dev-lang/go
-      - app-editors/mg
 
       # tty-utils:
       - app-misc/screen
@@ -50,10 +49,10 @@ core-utils:
       - dev-vcs/mercurial
 
       # archive-utils:
+      - app-arch/zip
       - app-arch/pbzip2
       - app-arch/pixz
-      - app-arch/dpkg
-      - app-arch/alien
+      - app-arch/lzop
 
       # misc text utils
       - app-misc/jq
