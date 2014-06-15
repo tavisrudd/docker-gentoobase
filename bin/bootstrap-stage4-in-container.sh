@@ -1,10 +1,25 @@
 #!/bin/bash
+PORTAGE_SNAPSHOT_URL=http://192.168.2.113:9090/portage-latest.tar.xz
+# http://gentoo.arcticnetwork.ca/snapshots/portage-latest.tar.xz
 
 get_portage_snapshot() {
     [[ -e /usr/portage ]] || {
-        wget -qO- http://gentoo.arcticnetwork.ca/snapshots/portage-latest.tar.xz | tar xfJ - -C /usr 
+        LOCALPORTAGE=1
+        wget -qO- $PORTAGE_SNAPSHOT_URL | tar xfJ - -C /usr 
     }
 }
+
+post_build_cleanup() {
+    [[ -z $LOCALPORTAGE ]] || {
+        rm -rf /usr/portage/
+        mkdir /usr/portage/
+    }
+}
+
+install_essential() {
+    emerge -u iproute2 iptables
+}
+
 salt_local() {
     salt-call -l warning --retcode-passthrough --local "$@"
 }
@@ -29,7 +44,9 @@ configure_portage &&
 get_portage_snapshot && 
 ln -sf /proc/self/fd /dev/ &&
 fix_python_multiprocessing &&
+install_essential &&
 emerge -vuD system world &&
 emerge -u --usepkg --buildpkg --quiet --quiet-build salt &&
 salt_local state.sls base.salt-patches &&
-salt_local state.highstate
+salt_local state.highstate &&
+post_build_cleanup
