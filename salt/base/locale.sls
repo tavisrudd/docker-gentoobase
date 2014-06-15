@@ -21,6 +21,14 @@ locale-gen/purge after etc/locale{.nopurge,.gen} changes:
       - file: /etc/locale.gen
       - file: /etc/locale.nopurge
 
+rm unused locale files:
+  cmd.run:
+    - name: |
+       mv /usr/share/i18n/locales/en_US* /tmp
+       rm -rf /usr/share/i18n/locales/*
+       mv /tmp/en_US* /usr/share/i18n/locales/
+    - unless: '[[ ! -e /usr/share/i18n/locales/zh_CN ]]'
+
 env-update after /etc/env.d/ changes:
   cmd.wait:
     - name: env-update
