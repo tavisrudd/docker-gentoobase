@@ -36,7 +36,7 @@ core-utils:
       - net-analyzer/netcat
       - net-libs/libpcap
       - net-analyzer/tcpdump
-      - net-analyzer/iftop
+      #- net-analyzer/iftop
       - net-misc/curl
       - www-servers/nginx
 
