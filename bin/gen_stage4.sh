@@ -12,8 +12,13 @@ main() {
                 "$BASEIMAGE" /mnt/bin/bootstrap-stage4-in-container.sh &&
     docker export "$CONTAINER_NAME" > "build/$CONTAINER_NAME.tar" &&
     docker import - "tavisrudd/$IMAGE_NAME" < "build/$CONTAINER_NAME.tar" &&
-    docker rm "$CONTAINER_NAME" &&
-    pixz "build/$CONTAINER_NAME.tar"
+    docker rm "$CONTAINER_NAME" && {
+        if [[ -n $KEEP_IMAGE ]]; then
+            pixz "build/$CONTAINER_NAME.tar"
+        else
+            rm "build/$CONTAINER_NAME.tar"
+        fi
+    }
 }
 
 main
