@@ -41,8 +41,10 @@ configure_portage() {
 }
 
 fix_python_multiprocessing() {
-    python -c'import _multiprocessing; _multiprocessing.SemLock' &>/dev/null || \
-        emerge --usepkg '<dev-lang/python-2.8' python
+    python -c'import _multiprocessing; _multiprocessing.SemLock' &>/dev/null || {
+        echo "fixing bug in Python build of _multiprocessing.SemLock"
+        emerge --quiet --usepkg '<dev-lang/python-2.8' python
+    }
 }
 
 configure_portage &&
@@ -50,8 +52,8 @@ get_portage_snapshot &&
 ln -sf /proc/self/fd /dev/ &&
 fix_python_multiprocessing &&
 install_essential &&
-emerge -vuD system world &&
-emerge -u --usepkg --buildpkg --quiet --quiet-build salt &&
+emerge -uD --usepkg --quiet system world &&
+emerge -u --usepkg --buildpkg --quiet salt &&
 salt_local state.sls base.salt-patches &&
 salt_local state.highstate &&
 post_build_cleanup
