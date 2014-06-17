@@ -11,13 +11,18 @@ get_portage_snapshot() {
 
 post_build_cleanup() {
     [[ -z $LOCALPORTAGE ]] || {
+        mkdir /tmp/portage
+        mv /usr/portage/{scripts,profiles,metadata} /tmp/portage
         rm -rf /usr/portage/
-        mkdir /usr/portage/
+        mkdir -p /usr/portage/{packages,distfiles}
+        mv /tmp/portage/* /usr/portage/
+        rm -rf /tmp/portage
+        rm -rf /usr/portage/metadata/md5-cache/
     }
 }
 
 install_essential() {
-    emerge -u iproute2 iptables
+    emerge -u --quiet iproute2 iptables
 }
 
 salt_local() {
