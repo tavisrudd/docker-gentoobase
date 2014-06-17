@@ -18,14 +18,28 @@ clear /usr/share/man/ non English:
     - name: rm -rf /usr/share/man/[^m]*
     - unless: '[[ ! -e /usr/share/man/es ]]'
 
-clear man3:
-  file.absent:
-    - name: /usr/share/man/man3
+/usr/share/man/man0p:
+  file.absent
+
+/usr/share/man/man1p:
+  file.absent
+
+/usr/share/man/man3:
+  file.absent
+
+/usr/share/man/man3p:
+  file.absent
+
+/usr/share/man/man6:
+  file.absent
 
 clear git manuals:
   cmd.run:
     - name: rm -rf /usr/share/man/*/[Gg]it*
     - unless: '[[ ! -e /usr/share/man/man7/gitcli.7.bz2 ]]'
+
+/usr/share/man/man7:
+  file.absent
 
 rm /usr/share/gtk-doc:
   file.absent:
@@ -39,7 +53,7 @@ rm python pyo files:
 rm portage /var/db/pkg environment.bz2 files:
   cmd.run:
     - name: 'find /var/db/pkg -name environment.bz2 -exec rm {} \;'
-    - unless: '[[ ! -e /var/db/pkg/sys-apps/less-*/environment.bz2 ]]'
+    - unless: 'ls /var/db/pkg/sys-apps/less-* | grep environment.bz2 && false || true'
 
 /var/cache/eix/previous.eix:
   file.absent
