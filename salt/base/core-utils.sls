@@ -3,6 +3,11 @@ app-arch/pixz:
     - accept_keywords: 
       - ~amd64
 
+app-arch/pxz:
+  portage_config.flags:
+    - accept_keywords: 
+      - ~amd64
+
 core-utils:
   pkg.installed:
     - refesh: False
@@ -52,6 +57,7 @@ core-utils:
       - app-arch/zip
       - app-arch/pbzip2
       - app-arch/pixz
+      - app-arch/pxz
       - app-arch/lzop
 
       # misc text utils
