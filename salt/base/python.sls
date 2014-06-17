@@ -14,3 +14,4 @@ python-related:
     - pkgs:
       - dev-python/pip
       - dev-python/ipython
+      - dev-python/virtualenv
