@@ -15,13 +15,20 @@ core-utils:
       - sys-process/htop
       - app-admin/sysstat
       - sys-process/lsof
+      - sys-apps/dstat
       - dev-python/psutil
-      - dev-util/strace
       - sys-apps/pv
+      - sys-apps/collectl
+      - sys-process/parallel
+      - app-admin/sudo
+
+      # init like
+      #- sys-apps/s6
 
       # gentoo-utils:
       - app-admin/localepurge
       - app-portage/eix
+      - app-portage/layman
       - app-portage/portage-utils
       - app-portage/gentoolkit
       - app-portage/flaggie
@@ -29,21 +36,32 @@ core-utils:
 
       # dev-utils:
       - sys-devel/make
+      - dev-util/patchutils
       - app-editors/mg
+      - app-text/sloccount
+      - dev-util/ltrace
+      - dev-util/strace
 
       # network-utils:
       - sys-apps/iproute2
       - sys-apps/ethtool
-      - net-firewall/iptables
       - net-dns/bind-tools
+      - net-dns/host
+      - net-misc/iputils
+      - net-firewall/iptables
+      - net-firewall/ebtables
+      - net-misc/bridge-utils
       - net-misc/dhcpcd
+      - net-misc/ntp
       - net-misc/telnet-bsd
       - net-analyzer/netcat
+      - net-misc/socat
       - net-libs/libpcap
       - net-analyzer/tcpdump
       #- net-analyzer/iftop
       - net-misc/curl
       - www-servers/nginx
+      - net-proxy/haproxy
 
       # tty-utils:
       - app-misc/screen
@@ -62,3 +80,4 @@ core-utils:
 
       # misc text utils
       - app-misc/jq
+      - app-misc/color
