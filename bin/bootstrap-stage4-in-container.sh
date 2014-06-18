@@ -14,6 +14,10 @@ get_portage_snapshot() {
 }
 
 post_build_cleanup() {
+    etc-update --automode -5
+    env-update
+    rm -f /etc/salt/minion_id
+    rm -rf /etc/salt/pki/minion/*
     is_portage_bind_mounted || {
         mkdir /tmp/portage
         mv /usr/portage/{scripts,profiles,metadata} /tmp/portage/
