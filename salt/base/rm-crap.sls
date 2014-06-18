@@ -67,8 +67,8 @@ rm portage /var/db/pkg environment.bz2 files:
 /var/log/emerge-fetch.log:
   file.absent
 
-/var/cache/salt/minion:
-  file.absent
+#/var/cache/salt/minion:
+#  file.absent
 
 /var/log/salt/minion.log:
   file.absent
