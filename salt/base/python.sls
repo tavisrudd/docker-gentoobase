@@ -5,7 +5,7 @@ dev-lang/python:
 
 fix missing _multiprocessing.SemLock:
   cmd.run:
-    - name: emerge --usepkg '<dev-lang/python-2.8' python
+    - name: emerge --quiet --usepkg '<dev-lang/python-2.8' python
     - unless: python -c'import _multiprocessing; _multiprocessing.SemLock'
 
 dev-python/fabric:
