@@ -10,9 +10,9 @@ provide net in /etc/rc.conf:
     - after: 'rc_provide="net"'
 
 /etc/inittab:
-  file.sed:
-    - before: '\(^c[1-6]\)'
-    - after: '#\1'
+  file.replace:
+    - pattern: '(^c[1-6])'
+    - repl: '#\1'
 
 clean container shutdown on SIGPWR:
   file.append:
