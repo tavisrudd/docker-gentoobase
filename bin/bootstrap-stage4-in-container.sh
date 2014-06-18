@@ -1,19 +1,22 @@
 #!/bin/bash
-PORTAGE_SNAPSHOT_URL=http://192.168.2.113:9090/portage-latest.tar.xz
-# http://gentoo.arcticnetwork.ca/snapshots/portage-latest.tar.xz
 
-unset LOCALPORTAGE
+#PORTAGE_SNAPSHOT_URL=http://192.168.2.114:9090/portage-latest-min.tar.xz
+PORTAGE_SNAPSHOT_URL=http://gentoo.arcticnetwork.ca/snapshots/portage-latest.tar.xz
+
+is_portage_bind_mounted() {
+    grep '/usr/portage ' /proc/mounts >/dev/null
+}
+
 get_portage_snapshot() {
-    grep '/usr/portage ' /proc/mounts >/dev/null || {
-        LOCALPORTAGE=1
+    is_portage_bind_mounted || {
         wget -qO- $PORTAGE_SNAPSHOT_URL | tar xfJ - -C /usr 
     }
 }
 
 post_build_cleanup() {
-    [[ -z $LOCALPORTAGE ]] || {
+    is_portage_bind_mounted || {
         mkdir /tmp/portage
-        mv /usr/portage/{scripts,profiles,metadata} /tmp/portage
+        mv /usr/portage/{scripts,profiles,metadata} /tmp/portage/
         rm -rf /usr/portage/
         mkdir -p /usr/portage/{packages,distfiles}
         mv /tmp/portage/* /usr/portage/
@@ -60,4 +63,4 @@ main() {
 }
 
 ##
-main
+[[ "$BASH_SOURCE" == "$0" ]] && main
