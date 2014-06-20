@@ -1,12 +1,11 @@
-app-arch/pixz:
-  portage_config.flags:
-    - accept_keywords: 
-      - ~amd64
 
-app-arch/pxz:
+{% for pkg in 'app-arch/pixz app-arch/pxz sys-apps/collectl sys-apps/s6 dev-lang/execline dev-libs/skalibs'.split() %}
+{{pkg}} accept ~amd64:
   portage_config.flags:
+    - name: {{pkg}}
     - accept_keywords: 
       - ~amd64
+{% endfor %}
 
 core-utils:
   pkg.installed:
@@ -23,7 +22,8 @@ core-utils:
       - app-admin/sudo
 
       # init like
-      #- sys-apps/s6
+      - sys-apps/s6
+      - sys-process/runit
 
       # gentoo-utils:
       - app-admin/localepurge
